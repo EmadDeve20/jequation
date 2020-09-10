@@ -3,26 +3,70 @@ from math import pow,sqrt
 
 def equation():
     """Solving System of Equation"""
-    print("ax+b=0")
-    a = input("a = ")
-    try:
-        a = float(a)
-    except ValueError:
-        a = 0
-    b = input("b = ")
-    try:
-        b = float(b)
-    except ValueError:
-        b = 0
-    try:
-        x = -b/a
-        if x == -0:
-            x = 0
-    except ZeroDivisionError:
-        print("a can not zero!")
-        quit()
+    print("1 - ax+b=0")
+    print("2 - a1x + b1 = a2x + b2")
 
-    print(f"x = {x}")
+    choice = input("choice: ")
+    try:
+        choice = int(choice)
+    except ValueError:
+        choice = 3
+
+    if choice == 1:
+        a = input("a = ")
+        try:
+            a = float(a)
+        except ValueError:
+            a = 0
+        b = input("b = ")
+        try:
+            b = float(b)
+        except ValueError:
+            b = 0
+        try:
+            x = -b/a
+            if x == -0:
+                x = 0
+        except ZeroDivisionError:
+            print("a can not zero!")
+            quit()
+
+        print(f"x = {x}")
+
+    if choice == 2:
+        a1 = input("a1 = ")
+        try:
+            a1 = float(a1)
+        except ValueError:
+            a1 = 0
+
+        b1 = input("b1 = ")
+        try:
+            b1 = float(b1)
+        except ValueError:
+            b1 = 0
+
+        a2 = input("a2 = ")
+        try:
+            a2 = float(a2)
+        except ValueError:
+            a2 = 0
+
+        b2 = input("b2 = ")
+        try:
+            b2 = float(b2)
+        except ValueError:
+            b2 = 0
+
+        try:
+            x = (b2-b1)/(a1-a2)
+            print(f"x = {x}")
+        except ZeroDivisionError:
+            print("(a1 - a2 = 0) this equation has no answer")
+
+    if choice == 3:
+        return 0
+
 
 def equation2():
     """Solving System of Second Degree Equation"""
@@ -64,7 +108,7 @@ def equation2():
         print(f"answer = {answer}")
 
     else:
-        print("none")
+        print("this equation has no answer")
 
 def equation3():
     """Solving Systems of Equations with Two Unknowns"""
