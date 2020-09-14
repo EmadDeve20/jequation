@@ -5,6 +5,7 @@ def equation():
     """Solving System of Equation"""
     print("1 - ax+b=0")
     print("2 - a1x + b1 = a2x + b2")
+    print("3 - close")
 
     choice = input("choice: ")
     try:
