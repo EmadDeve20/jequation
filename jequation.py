@@ -202,7 +202,10 @@ def equation3():
                 y = (c2-(a2*x)) / b2
                 if y == -0:
                     y = 0
-                print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y} = ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
+                if ((a1*x) + (b1*y)) == a1*x+b1*y:
+                    print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y}" , end=' ')
+                if (b2*y) + (a2*x) == a2*x+b2*y:
+                    print(f"=> ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
                 exit = True
                 break
 
@@ -216,7 +219,10 @@ def equation3():
                 y = (c1-(a1*x)) / b1
                 if y == -0:
                     y = 0
-                print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y} = ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
+                if ((a1*x) + (b1*y)) == a1*x+b1*y:
+                    print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y} ")
+                if (b2*y) + (a2*x) == a2*x+b2*y:
+                    print(" => ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
                 exit = True
                 break
 
@@ -228,7 +234,7 @@ def menu():
 What Equation do you need solve?:
     1 - First Degree Equation
     2 - Second Degree Equation
-    3 - Equation With Two Unkonwn(demo)
+    3 - Equation With Two Unkonwn
     4 - close (cansel)
     """
     )
