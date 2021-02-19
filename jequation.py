@@ -1,5 +1,5 @@
 #!/bin/env python3
-from math import pow,sqrt
+from math import pow, sqrt
 
 def equation():
     """Solving System of Equation"""
@@ -14,87 +14,86 @@ def equation():
         choice = 3
 
     if choice == 1:
-        a = input("a = ")
+        a_num = input("a = ")
         try:
-            a = float(a)
+            a_num = float(a_num)
         except ValueError:
-            a = 0
-        b = input("b = ")
+            a_num = 0
+        b_num = input("b = ")
         try:
-            b = float(b)
+            b_num = float(b_num)
         except ValueError:
-            b = 0
+            b_num = 0
         try:
-            x = -b/a
-            if x == -0:
-                x = 0
+            x_num = -b_num/a_num
+            if x_num == -0:
+                x_num = 0
         except ZeroDivisionError:
             print("a can not zero!")
             quit()
 
-        print(f"x = {x}")
+        print(f"x = {x_num}")
 
     if choice == 2:
-        a1 = input("a1 = ")
+        a1_num = input("a1 = ")
         try:
-            a1 = float(a1)
+            a1_num = float(a1_num)
         except ValueError:
-            a1 = 0
+            a1_num = 0
 
-        b1 = input("b1 = ")
+        b1_num = input("b1 = ")
         try:
-            b1 = float(b1)
+            b1_num = float(b1_num)
         except ValueError:
-            b1 = 0
+            b1_num = 0
 
-        a2 = input("a2 = ")
+        a2_num = input("a2 = ")
         try:
-            a2 = float(a2)
+            a2_num = float(a2_num)
         except ValueError:
-            a2 = 0
+            a2_num = 0
 
-        b2 = input("b2 = ")
+        b2_num = input("b2 = ")
         try:
-            b2 = float(b2)
+            b2_num = float(b2_num)
         except ValueError:
-            b2 = 0
+            b2_num = 0
 
         try:
-            x = (b2-b1)/(a1-a2)
-            print(f"x = {x}")
+            x_num = (b2_num-b1_num)/(a1_num-a2_num)
+            print(f"x = {x_num}")
         except ZeroDivisionError:
             print("(a1 - a2 = 0) this equation has no answer")
 
     if choice == 3:
         return 0
 
-
 def equation2():
     """Solving System of Second Degree Equation"""
     print("ax^2+bx+c = 0")
-    a = input("a = ")
+    a_num = input("a = ")
     try:
-        a = float(a)
+        a_num = float(a_num)
     except ValueError:
-        a = 0
-    b = input("b = ")
+        a_num = 0
+    b_num = input("b = ")
     try:
-        b = float(b)
+        b_num = float(b_num)
     except ValueError:
-        b = 0
-    c = input("c = ")
+        b_num = 0
+    c_num = input("c = ")
     try:
-        c = float(c)
+        c_num = float(c_num)
     except ValueError:
-        c = 0
+        c_num = 0
 
-    delta = pow(b , 2) - 4*(a*c)
+    delta = pow(b_num, 2) - 4*(a_num*c_num)
     print(f"delta = {delta}")
 
     if delta > 0:
         try:
-            answer1 =((b*-1)+sqrt(delta)) /(2*a)
-            answer2 = ((b*-1)-sqrt(delta)) / (2*a)
+            answer1 = ((b_num*-1)+sqrt(delta)) / (2*a_num)
+            answer2 = ((b_num*-1)-sqrt(delta)) / (2*a_num)
         except ZeroDivisionError:
             print("a can not zero!")
             quit()
@@ -102,7 +101,7 @@ def equation2():
 
     elif delta == 0:
         try:
-            answer = (b * -1) / (2*a)
+            answer = (b_num*-1) / (2*a_num)
         except ZeroDivisionError:
             print("a can not zero!")
             quit()
@@ -114,115 +113,115 @@ def equation2():
 def equation3():
     """Solving Systems of Equations with Two Unknowns"""
     print(
-    """
-    a1x+b1y=c1
-    a2x+b2y=c2
+        """
+        a1x+b1y=c1
+        a2x+b2y=c2
 
-    #a1,a2,b1,b2 can not zero!
-    """)
+        a1,a2,b1,b2 can not zero!"""
+    )
 
-    a1 = input("a1 = ")
+    a1_num = input("a1 = ")
     try:
-        a1 = float(a1)
-        if a1 == 0:
-            while a1 == 0:
-                a1 = input("a1 = ")
+        a1_num = float(a1_num)
+        if a1_num == 0:
+            while a1_num == 0:
+                a1_num = input("a1 = ")
                 try:
-                    a1 = float(a1)
+                    a1_num = float(a1_num)
                 except:
-                    a1 = 0
+                    a1_num = 0
     except ValueError:
-        a1 = 0
+        a1_num = 0
 
-    b1 = input("b1 = ")
+    b1_num = input("b1 = ")
     try:
-        b1 = float(b1)
-        if b1 == 0:
-            while b1 == 0:
-                b1 = input("b1 = ")
+        b1_num = float(b1_num)
+        if b1_num == 0:
+            while b1_num == 0:
+                b1_num = input("b1 = ")
                 try:
-                    b1 = float(b1)
+                    b1_num = float(b1_num)
                 except:
-                    b1 = 0
+                    b1_num = 0
     except:
-        b1 = 0
+        b1_num = 0
 
-    c1 = input("c1 = ")
+    c1_num = input("c1 = ")
     try:
-        c1 = float(c1)
+        c1_num = float(c1_num)
     except:
-        c1 = 0
+        c1_num = 0
 
 
-    a2 = input("a2 = ")
+    a2_num = input("a2 = ")
     try:
-        a2 = float(a2)
-        if a2 == 0:
-            while a2 == 0:
-                a2 = input("a2 = ")
+        a2_num = float(a2_num)
+        if a2_num == 0:
+            while a2_num == 0:
+                a2_num = input("a2 = ")
                 try:
-                    a2 = float(a2)
+                    a2_num = float(a2_num)
                 except:
-                    a2 = 0
+                    a2_num = 0
     except:
-        a2 = 0
+        a2_num = 0
 
-    b2 = input("b2 = ")
+    b2_num = input("b2 = ")
     try:
-        b2 = float(b2)
-        if b2 == 0:
-            while b2 == 0:
-                b2 = input("b2 = ")
+        b2_num = float(b2_num)
+        if b2_num == 0:
+            while b2_num == 0:
+                b2_num = input("b2 = ")
                 try:
-                    b2 = float(b2)
+                    b2_num = float(b2_num)
                 except:
-                    b2 = 0
+                    b2_num = 0
     except:
-        b2 = 0
+        b2_num = 0
 
 
 
-    c2 = input("c2 = ")
+    c2_num = input("c2 = ")
     try:
-        c2 = float(c2)
+        c2_num = float(c2_num)
     except:
-        c2 = 0
+        c2_num = 0
 
 
 
     exit = False
-    for i in range(2,12,1):
-        for j in range(2,12,1):
-            if (a1 * i) % (a2 * j) == 0:
-                b = (b1*i) - (b2*j)
-                c = (c1*i) - (c2*j)
-                x = c / b
-                if x == -0:
-                    x = 0
-                y = (c2-(a2*x)) / b2
-                if y == -0:
-                    y = 0
-                if ((a1*x) + (b1*y)) == a1*x+b1*y:
-                    print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y}" , end=' ')
-                if (b2*y) + (a2*x) == a2*x+b2*y:
-                    print(f"=> ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
+    for i in range(2, 12, 1):
+        for j in range(2, 12, 1):
+            if (a1_num * i) % (a2_num * j) == 0:
+                b_num = (b1_num*i) - (b2_num*j)
+                c_num = (c1_num*i) - (c2_num*j)
+                x_num = c_num / b_num
+                if x_num == -0:
+                    x_num = 0
+                y_num = (c2_num-(a2_num*x_num)) / b2_num
+                if y_num == -0:
+                    y_num = 0
+                if ((a1_num*x_num) + (b1_num*y_num)) == a1_num*x_num+b1_num*y_num:
+                    print(f"x = {x_num} , y = {y_num} => ({a1_num}*{x_num}) + ({b1_num}*{y_num}) = {a1_num*x_num+b1_num*y_num}", end=' ')
+                if (b2_num*y_num) + (a2_num*x_num) == a2_num*x_num+b2_num*y_num:
+                    print(f"=> ({b2_num}*{y_num}) + ({a2_num}*{x_num}) = {a2_num*x_num+b2_num*y_num}")
                 exit = True
                 break
 
 
-            if (a1 * j) / (a2 * i) == 1:
-                b = (b1*j) - (b2*i)
-                c = (c1*j) - (c2*i)
-                x = c / b
-                if x == -0:
-                    x = 0
-                y = (c1-(a1*x)) / b1
-                if y == -0:
-                    y = 0
-                if ((a1*x) + (b1*y)) == a1*x+b1*y:
-                    print(f"x = {x} , y = {y} => ({a1}*{x}) + ({b1}*{y}) = {a1*x+b1*y} ")
-                if (b2*y) + (a2*x) == a2*x+b2*y:
-                    print(" => ({b2}*{y}) + ({a2}*{x}) = {a2*x+b2*y}")
+            if (a1_num * j) / (a2_num * i) == 1:
+                b_num = (b1_num*j) - (b2_num*i)
+                c_num = (c1_num*j) - (c2_num*i)
+                x_num = c_num / b_num
+                if x_num == -0:
+                    x_num = 0
+                y_num = (c1_num-(a1_num*x_num)) / b1_num
+                if y_num == -0:
+                    y_num = 0
+                if ((a1_num*x_num) + (b1_num*y_num)) == a1_num*x_num+b1_num*y_num:
+                    print(f"x = {x_num} , y = {y_num} => ({a1_num}*{x_num}) + ({b1_num}*{y_num}) = {a1_num*x_num+b1_num*y_num} ")
+                if (b2_num*y_num) + (a2_num*x_num) == a2_num*x_num+b2_num*y_num:
+                    print(f" => ({b2_num}*{y_num}) + ({a2_num}*{x_num}) = {a2_num*x_num+b2_num*y_num}")
                 exit = True
                 break
 
@@ -236,8 +235,8 @@ What Equation do you need solve?:
     2 - Second Degree Equation
     3 - Equation With Two Unkonwn
     4 - close (cansel)
-    """
-    )
+    
+    """)
 
     choice_mode = input("choice (number): ")
     try:
