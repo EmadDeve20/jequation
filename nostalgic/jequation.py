@@ -1,4 +1,23 @@
 #!/bin/env python3
+
+"""
+this is first my project. 
+this is not standard but I save it and I never change it.
+because this is my first step and my story.
+
+{
+    Feb 20 2021    
+}
+
+##########################
+* We Have A Fine Life :D *
+##########################
+
+Note: Don't Send PL About this Code!
+
+"""
+
+
 from math import pow, sqrt
 
 def equation():
