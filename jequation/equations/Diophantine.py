@@ -5,7 +5,8 @@ This is a Demo module for solving Diophantine equations
 """
 
 
-def linear(number_a: int, number_b: int, number_c: int = 0, target: str = "") -> int:
+def linear_with_one_unknown\
+    (number_a: int, number_b: int, number_c: int = 0, target: str = "") -> int:
     """this function for linear
 
         |ax+by=c|
@@ -33,8 +34,9 @@ def linear(number_a: int, number_b: int, number_c: int = 0, target: str = "") ->
     return answer
 
 
-def linear_with_tow(number_of_x_one: int, number_one: int, number_of_x_two: int, number_two: int):
-    """This function can solve a linear equation with two expressions
+def linear_with_tow_unknown\
+        (number_of_x_one: int, number_one: int, number_of_x_two: int, number_two: int):
+    """This function can solve a linear equation with two expressions(unknown)
 
        -----------------
        |ax1+b1 = ax2+b2|
