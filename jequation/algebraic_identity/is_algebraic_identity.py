@@ -8,6 +8,7 @@ import re
 
 def is_Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
+    #TODO: This is Flase But this Function think this is True :(+2)(2+1)
     check = re.match(r"\(.*\+.*\)\(.*\+.*\)", phrase)
     if check != None and check.end() == len(phrase):
         return True
