@@ -8,29 +8,28 @@ import re
 
 def is_Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
-    #TODO: This is Flase But this Function think this is True :(+2)(2+1)
-    check = re.match(r"\(.*\+.*\)\(.*\+.*\)", phrase)
+    check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
     if check != None and check.end() == len(phrase):
         return True
-    check = re.match(r"\(.*-.*\)\(.*-.*\)", phrase)
+    check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
     if check != None and check.end() == len(phrase):
         return True
 
-    check = re.match(r"\(.*\+.*\)\^2", phrase)
+    check = re.match(r"\(.+\+.+\)\^2", phrase)
     if check != None and check.end() == len(phrase):
         return True
-    check = re.match(r"\(.*-.*\)\^2", phrase)
+    check = re.match(r"\(.+-.+\)\^2", phrase)
     if check != None and check.end == len(phrase):
             return True
     return False
 
 def is_married(phrase: str) -> bool:
     """this function for check your phrase is married or not"""
-    check = re.match(r"\(.*-.*\)\(.*\+.*\)", phrase)
-    if check.end() == len(phrase):
+    check = re.match(r"\(.+-.+\)\(.+\+.+\)", phrase)
+    if check != None and check.end() == len(phrase):
         return True
-    check = re.match(r"\(.*+.*\)\(.*-.*\)", phrase)
-    if check.end() == len(phrase):
+    check = re.match(r"\(.+\+.+\)\(.+-.+\)", phrase)
+    if check != None and  check.end() == len(phrase):
         return True
     return False
 
