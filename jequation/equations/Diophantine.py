@@ -43,6 +43,24 @@ def linear_with_tow_unknown\
     result = (number_of_x_one - number_of_x_two) / (number_one - number_two)
     return result
 
+def taxicab_number():
+    """The smallest nontrivial solution in positive integers is 123 + 13 = 93 + 103 = 1729.
+    It was famously given as an evident property of 1729, a taxicab number (also named Hardy–Ramanujan number) by Ramanujan to Hardy while
+    meeting in 1917.[1] 
+    There are infinitely many nontrivial solutions.
+    https://en.wikipedia.org/wiki/Taxicab_number
+    """
+    pass
+
+def pythagorean_triple():
+    """
+    For n = 2 there are infinitely many solutions (x, y, z): the Pythagorean triples.
+    For larger integer values of n, Fermat's Last Theorem (initially claimed in 1637 by Fermat and proved by Andrew Wiles in 1995[3])
+    states there are no positive integer solutions (x, y, z).
+    https://en.wikipedia.org/wiki/Pythagorean_triple
+    """
+    pass
+
 if __name__ == "__main__":
     from doctest import testmod
     testmod(name="linear_with_one_unknown", verbose=True)
