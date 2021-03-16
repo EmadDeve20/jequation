@@ -6,14 +6,23 @@ I used the Persian names of alliances for all functions
 
 import re
 
-def Twosentence_square(phrase: str) -> bool:
+def is_Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
+    #TODO: we have BIG BUGE here: (90+90)^2 THIS IS NOT MATCH
     if len(phrase) == 10:
-        check = re.match(r"\(.+.\)\(.+.\)", phrase)
+        check = re.match(r"\(.*\+.*\)\(.*\+.*\)", phrase)
         if check.end() == len(phrase):
             return True
-        check = re.match(r"\(.-.\)\(.-.\)", phrase)
+        check = re.match(r"\(.*-.*\)\(.*-.*\)", phrase)
         if check.end() == len(phrase):
+            return True
+
+    elif len(phrase) == 7:
+        check = re.match(r"\(.*\+.*\)\^2", phrase)
+        if check.end() == len(phrase):
+            return True
+        check = re.match(r"\(.*-.*\)\^2", phrase)
+        if check.end == len(phrase):
             return True
     return False
 
