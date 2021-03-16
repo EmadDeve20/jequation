@@ -15,7 +15,6 @@ def Twosentence_square(phrase: str) -> bool:
         check = re.match(r"\(.-.\)\(.-.\)", phrase)
         if check.end() == len(phrase):
             return True
-    #TODO; if len(pharse) > 10
     return False
 
 def is_married(phrase: str) -> bool:
