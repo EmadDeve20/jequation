@@ -6,13 +6,24 @@ I used the Persian names of alliances for all functions
 
 import re
 
+
 def is_Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
+    #This Function for check numbers is Valid or Not!
+    # so (a+b)(a+b) true But this is (a+b)(b+a) is not True
+    def a_and_b(phrase: str) -> bool:
+        phrase = phrase.replace("(", "")
+        phrase = phrase.replace(")", "")
+        phrase = phrase.split("+")
+        if phrase[0] != phrase[2] and phrase[1] == phrase[2] + phrase[0]:
+            return True
+        return False
+
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
-    if check != None and check.end() == len(phrase):
+    if check != None and check.end() == len(phrase) and a_and_b(phrase):
         return True
     check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
-    if check != None and check.end() == len(phrase):
+    if check != None and check.end() == len(phrase) and a_and_b(phrase):
         return True
 
     check = re.match(r"\(.+\+.+\)\^2", phrase)
