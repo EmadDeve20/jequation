@@ -19,12 +19,13 @@ def Twosentence_square(phrase: str) -> bool:
 
 def is_married(phrase: str) -> bool:
     """this function for check your phrase is married or not"""
-    check = re.match(r"\(.-.\)\(.+.\)", phrase)
-    if check.end() == len(phrase):
-        return True
-    check = re.match(r"\(.+.\)\(.-.\)", phrase)
-    if check.end() == len(phrase):
-        return True
+    if len(phrase) == 10:
+        check = re.match(r"\(.-.\)\(.+.\)", phrase)
+        if check.end() == len(phrase):
+            return True
+        check = re.match(r"\(.+.\)\(.-.\)", phrase)
+        if check.end() == len(phrase):
+            return True
     return False
 
 def is_Threesentence_square(phrase: str) -> bool:
