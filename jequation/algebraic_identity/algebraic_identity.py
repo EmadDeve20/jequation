@@ -6,7 +6,7 @@ I used the Persian names of alliances for all functions
 
 import re
 
-def is_binomial(phrase: str) -> bool:
+def Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
     if len(phrase) == 10:
         check = re.match(r"\(.+.\)\(.+.\)", phrase)
@@ -27,3 +27,24 @@ def is_married(phrase: str) -> bool:
     if check.end() == len(phrase):
         return True
     return False
+
+def is_Threesentence_square(phrase: str) -> bool:
+    pass
+
+def is_Twosentence_cube(phrase: str) -> bool:
+    pass
+
+def is_fat_and_thin(phrase: str) ->bool:
+    pass
+
+def is_Common_sentence(phrase: str) -> bool:
+    pass
+
+def is_Newtons_binomial_expansion_sentence(phrase: str) -> bool:
+    pass
+
+def is_lagrange_alliance(phrase: str) -> bool:
+    pass
+
+def is_euler_alliance(phrase: str) -> bool:
+    pass
