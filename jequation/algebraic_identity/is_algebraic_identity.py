@@ -7,8 +7,14 @@ I used the Persian names of alliances for all functions
 import re
 
 
-def is_twosentence_square(phrase: str) -> bool:
-    """this function for check your phrase is binomial or not"""
+def is_two_square(phrase: str) -> bool:
+    """this function for check your phrase is is two-sentence square or not
+        >>> import is_two_square
+        >>> is_two_square("(a+b)(a+b)")
+        True
+        >>> is_two_square("(a+b)(a+c)")
+        False
+    """
     # (a -|+ b)(b -|+ a) and and any more like this is True for this function
     def a_and_b(phrase: str) -> bool:
         # phrase = "(a+b)(a+b)"
@@ -46,7 +52,15 @@ def is_twosentence_square(phrase: str) -> bool:
     return False
 
 def is_married(phrase: str) -> bool:
-    """this function for check your phrase is married or not"""
+    """this function for check your phrase is married or not
+        >>> import is_married
+        >>> is_married('(a+b)(a-b)')
+        True
+        >>> is_married('(a+b)(a+b)')
+        False
+        >>> is_married('(a-b)(b+a)')
+        True
+    """
     # (a + b)(b - a) and and any more like this is True for this function
     def a_and_b(phrase: str) -> bool:
         # phrase = "(a+b)(a-b)"
