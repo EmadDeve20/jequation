@@ -9,16 +9,19 @@ import re
 
 def is_Twosentence_square(phrase: str) -> bool:
     """this function for check your phrase is binomial or not"""
-    #This Function for check numbers is Valid or Not!
-    # ((a+b)(b+a) and (b+a)(a+b) and ) 
+    # (a -|+ b)(b -|+ a) and and any more like this is True for this function 
     def a_and_b(phrase: str) -> bool:
+        # phrase = "(a+b)(a+b)"
         phrase = phrase.replace("(", "")
+        # pharse = "a+b)a+b)"
         phrase = phrase.replace(")", "")
+        # pharse = "a+ba+b"
         
         if phrase.find("+") != -1:
             phrase = phrase.split("+")
         elif phrase.find("-") != -1:
             phrase = phrase.split("-")
+        # pharse = "[a, ba, b]"
         
         if (phrase[0] != phrase[2]) and phrase[1] == phrase[2] + phrase[0]:
             return True
