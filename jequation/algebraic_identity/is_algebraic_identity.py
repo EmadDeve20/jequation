@@ -37,17 +37,17 @@ def is_two_square(phrase: str) -> bool:
         return False
 
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
-    if check != None and check.end() == len(phrase) and a_and_b(phrase):
+    if (not check is None and check.end()) == (len(phrase) and a_and_b(phrase)):
         return True
     check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
-    if check != None and check.end() == len(phrase) and a_and_b(phrase):
+    if (not check is None and check.end()) == (len(phrase) and a_and_b(phrase)):
         return True
 
     check = re.match(r"\(.+\+.+\)\^2", phrase)
-    if check != None and check.end() == len(phrase):
+    if not check is None and check.end() == len(phrase):
         return True
     check = re.match(r"\(.+-.+\)\^2", phrase)
-    if check != None and check.end == len(phrase):
+    if not check is None and check.end == len(phrase):
         return True
     return False
 
@@ -84,10 +84,10 @@ def is_married(phrase: str) -> bool:
         return False
 
     check = re.match(r"\(.+-.+\)\(.+\+.+\)", phrase)
-    if check != None and check.end() == len(phrase) and a_and_b(phrase):
+    if (not check is None and check.end()) == len(phrase) and a_and_b(phrase):
         return True
     check = re.match(r"\(.+\+.+\)\(.+-.+\)", phrase)
-    if check != None and  check.end() == len(phrase) and a_and_b(phrase):
+    if (not check is None and check.end()) == len(phrase) and a_and_b(phrase):
         return True
     return False
 
@@ -97,10 +97,10 @@ def is_threesentence_square(phrase: str) -> bool:
 def is_twosentence_cube(phrase: str) -> bool:
     """demo"""
     check = re.match(r"\(.+\+.+\)\^3", phrase)
-    if (check != None) and check.end() == len(phrase):
+    if (not check is None) and check.end() == len(phrase):
         return True
     check = re.match(r"\(.+-.+\)\^3", phrase)
-    if (check != None) and check.end() == len(phrase):
+    if (not check is None) and check.end() == len(phrase):
         return True
     return False
 
