@@ -22,25 +22,16 @@ def is_two_square(phrase: str) -> bool:
         # pharse = "a+b)a+b)"
         phrase = phrase.replace(")", "")
         # pharse = "a+ba+b"
-        if phrase.find("+") != -1:
-            phrase = phrase.split("+")
-        elif phrase.find("-") != -1:
-            phrase = phrase.split("-")
-        # pharse = "[a, ba, b]"
 
-        if (phrase[0] != phrase[2]) and phrase[1] == phrase[2] + phrase[0]:
-            return True
-        if (phrase[0] == phrase[2]) and \
-            (phrase[1][0:int(len(phrase[1])/2)] == \
-                phrase[1][int(len(phrase[1])/2):len(phrase[1])]):
+        if phrase.count(phrase[0]) == 2 and phrase.count(phrase[len(phrase)-1]) == 2:
             return True
         return False
 
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
-    if (not check is None and check.end()) == (len(phrase) and a_and_b(phrase)):
+    if not check is None and check.end() == len(phrase) and a_and_b(phrase):
         return True
     check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
-    if (not check is None and check.end()) == (len(phrase) and a_and_b(phrase)):
+    if not check is None and check.end() == len(phrase) and a_and_b(phrase):
         return True
 
     check = re.match(r"\(.+\+.+\)\^2", phrase)
@@ -68,18 +59,8 @@ def is_married(phrase: str) -> bool:
         # pharse = "a+b)a-b)"
         phrase = phrase.replace(")", "")
         # pharse = "a+ba-b"
-        phrase = phrase.replace("+", " ")
-        # pharse = "a ba-b"
-        phrase = phrase.replace("-", " ")
-        # pharse = "a ba b"
-        phrase = phrase.split(" ")
-        # pharse = "[a, ba, b]"
 
-        if (phrase[0] != phrase[2]) and phrase[1] == phrase[2] + phrase[0]:
-            return True
-        if (phrase[0] == phrase[2]) and \
-            (phrase[1][0:int(len(phrase[1])/2)] == \
-                phrase[1][int(len(phrase[1])/2):len(phrase[1])]):
+        if phrase.count(phrase[0]) == 2 and phrase.count(phrase[len(phrase)-1]) == 2:
             return True
         return False
 
@@ -96,6 +77,20 @@ def is_threesentence_square(phrase: str) -> bool:
 
 def is_twosentence_cube(phrase: str) -> bool:
     """demo"""
+    def a_and_b(phrase: str) -> bool:
+        # phrase = "(a+b)(a+b)"
+        phrase = phrase.replace("(", "")
+        # pharse = "a+b)a+b)"
+        phrase = phrase.replace(")", "")
+        # pharse = "a+ba+b"
+
+
+        if phrase.count(phrase[0]) == 3 and phrase.count(phrase[len(phrase)-1]) == 3:
+            return True
+        return False
+    check = re.match(r"\(.+\+.+\)\(.+\+.+\)\(.+\+.+\)", phrase)
+    if (not check is None and check.end() == len(phrase)) and a_and_b(phrase):
+        return True 
     check = re.match(r"\(.+\+.+\)\^3", phrase)
     if (not check is None) and check.end() == len(phrase):
         return True
