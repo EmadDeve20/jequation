@@ -18,13 +18,24 @@ def is_two_square(phrase: str) -> bool:
     # (a -|+ b)(b -|+ a) and and any more like this is True for this function
     def a_and_b(phrase: str) -> bool:
         # phrase = "(a+b)(a+b)"
+        phrase = phrase.replace("(", "", 1)
+        # phrase = "a+b)(a+b)"
+        phrase = phrase.replace(")", " ", 1)
+        # phrase = "a+b (a+b)"
         phrase = phrase.replace("(", "")
-        # pharse = "a+b)a+b)"
+        # phrase = "a+b a+b)"
         phrase = phrase.replace(")", "")
-        # pharse = "a+ba+b"
+        # phrase = "a+b a+b"
+        if phrase.find("+") != -1:
+            phrase = phrase.replace("+", " ")
+        elif phrase.find("-") != -1:
+            phrase = phrase.replace("+", " ")
+        # phrase = "a b a b"
+        phrase = phrase.split(" ")
+        # phrase = "['a', 'b', 'a', 'b']"
 
-        ok = phrase.count(phrase[0]) == 2 and phrase.count(phrase[2]) == 2
-        if ok and phrase[0] != phrase[2]:
+        ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
+        if phrase[0] != phrase[1] and ok_style:
             return True
         return False
 
@@ -56,13 +67,23 @@ def is_married(phrase: str) -> bool:
     # (a + b)(b - a) and and any more like this is True for this function
     def a_and_b(phrase: str) -> bool:
         # phrase = "(a+b)(a-b)"
+        phrase = phrase.replace("(", "", 1)
+        # phrase = "a+b)(a-b)"
+        phrase = phrase.replace(")", " ", 1)
+        # phrase = "a+b (a-b)"
         phrase = phrase.replace("(", "")
-        # pharse = "a+b)a-b)"
+        # phrase = "a+b a-b)"
         phrase = phrase.replace(")", "")
-        # pharse = "a+ba-b"
+        # phrase = "a+b a-b"
+        phrase = phrase.replace("+", " ")
+        # phrase = "a b a-b"
+        phrase = phrase.replace("-", " ")
+        # phrase = "a b a b"
+        phrase = phrase.split(" ")
+        # phrase = "['a', 'b', 'a', 'b']"
 
-        ok = phrase.count(phrase[0]) == 2 and phrase.count(phrase[2]) == 2
-        if ok and phrase[0] != phrase[2]:
+        ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
+        if phrase[0] != phrase[1] and ok_style:
             return True
         return False
 
@@ -74,20 +95,30 @@ def is_married(phrase: str) -> bool:
         return True
     return False
 
-def is_threesentence_square(phrase: str) -> bool:
-    pass
+#def is_threesentence_square(phrase: str) -> bool:
 
 def is_twosentence_cube(phrase: str) -> bool:
     """demo"""
     def a_and_b(phrase: str) -> bool:
-        # phrase = "(a+b)(a+b)"
+        # phrase = "(a+b)(a+b)(a+b)"
+        phrase = phrase.replace("(", "", 2)
+        # phrase = "a+b)a+b)(a+b)"
+        phrase = phrase.replace(")", " ", 2)
+        # phrase = "a+b a+b (a+b)"
         phrase = phrase.replace("(", "")
-        # pharse = "a+b)a+b)"
+        # phrase = "a+b a+b a+b)"
         phrase = phrase.replace(")", "")
-        # pharse = "a+ba+b"
+        # phrase = "a+b a+b a+b"
+        if phrase.find("+") != -1:
+            phrase = phrase.replace("+", " ")
+        elif phrase.find("-") != -1:
+            phrase = phrase.replace("-", " ")
+        # phrase = "a b a b a b"
+        phrase = phrase.split(" ")
+        # phrase = "['a', 'b', 'a', 'b', 'a', 'b']"
 
-        ok = phrase.count(phrase[0]) == 3 and phrase.count(phrase[2]) == 3
-        if ok and phrase[0] != phrase[2]:
+        ok_style = phrase.count(phrase[0]) == 3 and phrase.count(phrase[1]) == 3
+        if phrase[0] != phrase[1] and ok_style:
             return True
         return False
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)\(.+\+.+\)", phrase)
@@ -95,7 +126,7 @@ def is_twosentence_cube(phrase: str) -> bool:
         return True
     check = re.match(r"\(.+-.+\)\(.+-.+\)\(.+-.+\)", phrase)
     if (not check is None and check.end() == len(phrase)) and a_and_b(phrase):
-        return True 
+        return True
     check = re.match(r"\(.+\+.+\)\^3", phrase)
     if (not check is None) and check.end() == len(phrase):
         return True
@@ -104,18 +135,8 @@ def is_twosentence_cube(phrase: str) -> bool:
         return True
     return False
 
-def is_fat_and_thin(phrase: str) ->bool:
-    pass
-
-
-def is_common_sentence(phrase: str) -> bool:
-    pass
-
-def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
-    pass
-
-def is_lagrange_alliance(phrase: str) -> bool:
-    pass
-
-def is_euler_alliance(phrase: str) -> bool:
-    pass
+#def is_fat_and_thin(phrase: str) ->bool:
+#def is_common_sentence(phrase: str) -> bool:
+#def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
+#def is_lagrange_alliance(phrase: str) -> bool:
+#def is_euler_alliance(phrase: str) -> bool:
