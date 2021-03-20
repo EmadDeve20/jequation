@@ -95,10 +95,18 @@ def is_threesentence_square(phrase: str) -> bool:
     pass
 
 def is_twosentence_cube(phrase: str) -> bool:
-    pass
+    """demo"""
+    check = re.match(r"\(.+\+.+\)\^3", phrase)
+    if (check != None) and check.end() == len(phrase):
+        return True
+    check = re.match(r"\(.+-.+\)\^3", phrase)
+    if (check != None) and check.end() == len(phrase):
+        return True
+    return False
 
 def is_fat_and_thin(phrase: str) ->bool:
     pass
+
 
 def is_common_sentence(phrase: str) -> bool:
     pass
