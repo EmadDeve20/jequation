@@ -25,7 +25,7 @@ def is_two_square(phrase: str) -> bool:
         phrase = phrase.replace("(", "")
         # phrase = "a+b a+b)"
         phrase = phrase.replace(")", "")
-<<<<<<< HEAD
+
         # phrase = "a+b a+b"
         if phrase.find("+") != -1:
             phrase = phrase.replace("+", " ")
@@ -37,12 +37,6 @@ def is_two_square(phrase: str) -> bool:
 
         ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
         if phrase[0] != phrase[1] and ok_style:
-=======
-        # pharse = "a+ba+b"
-
-        ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[2]) == 2
-        if ok_style and phrase[0] != phrase[2]:
->>>>>>> 9152284e2ec4d1def3a280a83c4108ed5ee970d5
             return True
         return False
 
@@ -81,7 +75,7 @@ def is_married(phrase: str) -> bool:
         phrase = phrase.replace("(", "")
         # phrase = "a+b a-b)"
         phrase = phrase.replace(")", "")
-<<<<<<< HEAD
+
         # phrase = "a+b a-b"
         phrase = phrase.replace("+", " ")
         # phrase = "a b a-b"
@@ -92,12 +86,6 @@ def is_married(phrase: str) -> bool:
 
         ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
         if phrase[0] != phrase[1] and ok_style:
-=======
-        # pharse = "a+ba-b"
-
-        ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[2]) == 2
-        if ok_style and phrase[0] != phrase[2]:
->>>>>>> 9152284e2ec4d1def3a280a83c4108ed5ee970d5
             return True
         return False
 
@@ -122,7 +110,7 @@ def is_twosentence_cube(phrase: str) -> bool:
         phrase = phrase.replace("(", "")
         # phrase = "a+b a+b a+b)"
         phrase = phrase.replace(")", "")
-<<<<<<< HEAD
+
         # phrase = "a+b a+b a+b"
         if phrase.find("+") != -1:
             phrase = phrase.replace("+", " ")
@@ -134,12 +122,6 @@ def is_twosentence_cube(phrase: str) -> bool:
 
         ok_style = phrase.count(phrase[0]) == 3 and phrase.count(phrase[1]) == 3
         if phrase[0] != phrase[1] and ok_style:
-=======
-        # pharse = "a+ba+b"
-
-        ok_style = phrase.count(phrase[0]) == 3 and phrase.count(phrase[2]) == 3
-        if ok_style and phrase[0] != phrase[2]:
->>>>>>> 9152284e2ec4d1def3a280a83c4108ed5ee970d5
             return True
         return False
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)\(.+\+.+\)", phrase)
