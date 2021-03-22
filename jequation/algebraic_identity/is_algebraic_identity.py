@@ -139,7 +139,39 @@ def is_twosentence_cube(phrase: str) -> bool:
     return False
 
 #def is_fat_and_thin(phrase: str) ->bool:
-#def is_common_sentence(phrase: str) -> bool:
+def is_common_sentence(phrase: str) -> bool:
+    def one_subscribe(phrase: str):
+        phrase = phrase.replace("(", "")
+        phrase = phrase.replace(")", "")
+        counter = 0
+        last_char = ""
+        print(phrase)
+        for i in phrase:
+            if i == "+" or i == "-":
+                continue
+            if phrase.count(i) == 2 and not i in last_char:
+                counter += 1
+                last_char += i
+
+        if counter == 1:
+            return True
+        return False
+        
+        
+    check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
+    if not check is None and check.end() == len(phrase) and one_subscribe(phrase):
+        return True
+    check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
+    if not check is None and check.end() == len(phrase) and one_subscribe(phrase):
+        return True
+
+    check = re.match(r"\(.+\+.+\)\^2", phrase)
+    if not check is None and check.end() == len(phrase):
+        return True
+    check = re.match(r"\(.+-.+\)\^2", phrase)
+    if not check is None and check.end == len(phrase):
+        return True
+    return False
 #def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
 #def is_lagrange_alliance(phrase: str) -> bool:
 #def is_euler_alliance(phrase: str) -> bool:
