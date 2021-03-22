@@ -99,8 +99,16 @@ def is_married(phrase: str) -> bool:
 
 #def is_threesentence_square(phrase: str) -> bool:
 
-def is_twosentence_cube(phrase: str) -> bool:
-    """demo"""
+def is_two_cube(phrase: str) -> bool:
+    """this is a function for check your phrase is two-sentence cube or not
+    >>> import is_two_cube
+    >>> is_two_cube("(a+b)^3")
+    True
+    >>> is_two_cube("(a+b)^4")
+    False
+    >>> is_two_cube("(a+b)(a+b)(a+b)")
+    True
+    """
     def a_and_b(phrase: str) -> bool:
         # phrase = "(a+b)(a+b)(a+b)"
         phrase = phrase.replace("(", "", 2)
