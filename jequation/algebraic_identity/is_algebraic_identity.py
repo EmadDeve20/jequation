@@ -164,7 +164,7 @@ def is_common_sentence(phrase: str) -> bool:
         counter = 0
         last_char = ""
         for i in phrase:
-            if i == "+" or i == "-":
+            if i in ("+", "-"):
                 continue
             if phrase.count(i) == 2 and not i in last_char:
                 counter += 1
@@ -173,8 +173,7 @@ def is_common_sentence(phrase: str) -> bool:
         if counter == 1:
             return True
         return False
-        
-        
+
     check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
     if not check is None and check.end() == len(phrase) and one_subscribe(phrase):
         return True
