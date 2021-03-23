@@ -148,12 +148,21 @@ def is_two_cube(phrase: str) -> bool:
 
 #def is_fat_and_thin(phrase: str) ->bool:
 def is_common_sentence(phrase: str) -> bool:
+    """This fucntion for checking your phrase is common sentence or not
+        >>> import is_common_sentence
+        >>> is_common_sentence("(x+a)(x+b)")
+        True
+        >>> is_common_sentence("(x+a)(x+a)")
+    """
+    # this Function for checking you phrase has one subscriber or no
     def one_subscribe(phrase: str):
+        # phrase = "(x+a)(x+b)"
         phrase = phrase.replace("(", "")
+        # phrase = "x+a)x+b)"
         phrase = phrase.replace(")", "")
+        # phrase = "x+ax+b"
         counter = 0
         last_char = ""
-        print(phrase)
         for i in phrase:
             if i == "+" or i == "-":
                 continue
