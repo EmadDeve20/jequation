@@ -147,23 +147,43 @@ def is_two_cube(phrase: str) -> bool:
     return False
 
 def is_fat_and_thin(phrase: str) -> bool:
+    #TODO: this (4+8)(16-24+64) is True Not Flase
     check = re.match(r"\((.+\+.+)\)\(.+\^2-(.+)\+.+\^2\)", phrase)
     if not check is None:
-        if check.group(1).replace('+', '') == check.group(2):
+        if check.group(2).isalnum():
+            nums_group =  check.group(1).split('+')
+            nums_group = float(nums_group[0]) * float(nums_group[1])
+            if float(check.group(2)) == nums_group:
+                return True
+        elif check.group(1).replace('+', '') == check.group(2):
             return True
     check = re.match(r"\((.+-.+)\)\(.+\^2\+(.+)\+.+\^2\)", phrase)
     if not check is None:
-        if check.group(1).replace('-', '') == check.group(2):
+        if check.group(2).isalnum():
+            nums_group =  check.group(1).split('-')
+            nums_group = float(nums_group[0]) * float(nums_group[1])
+            if float(check.group(2)) == nums_group:
+                return True
+        elif check.group(1).replace('-', '') == check.group(2):
             return True
     check = re.match(r"\(.+\^2\+(.+)\+.+\^2\)\((.+-.+)\)", phrase)
     if not check is None:
-        if check.group(2).replace('-', '') == check.group(1):
+        if check.group(1).isalnum():
+            nums_group =  check.group(2).split('-')
+            nums_group = float(nums_group[0]) * float(nums_group[1])
+            if float(check.group(1)) == nums_group:
+                return True
+        elif check.group(2).replace('-', '') == check.group(1):
             return True
     check = re.match(r"\(.+\^2-(.+)\+.+\^2\)\((.+\+.+)\)", phrase)
     if not check is None:
-        if check.group(2).replace('+', '') == check.group(1):
+        if check.group(1).isalnum():
+            nums_group =  check.group(2).split('+')
+            nums_group = float(nums_group[0]) * float(nums_group[1])
+            if float(check.group(1)) == nums_group:
+                return True
+        elif check.group(2).replace('+', '') == check.group(1):
             return True
-    
     return False
 
 def is_common_sentence(phrase: str) -> bool:
