@@ -146,20 +146,24 @@ def is_two_cube(phrase: str) -> bool:
         return True
     return False
 
-def is_fat_and_thin(phrase: str) ->bool:
+def is_fat_and_thin(phrase: str) -> bool:
     check = re.match(r"\((.+\+.+)\)\(.+\^2-(.+)\+.+\^2\)", phrase)
-    try:
-        ok_style = check.group(1).replace("+", "") == check.group(2)
-        if (not check is None and check.end() == len(phrase)) and ok_style:
+    if not check is None:
+        if check.group(1).replace('+', '') == check.group(2):
             return True
-    except AttributeError:
-        check = re.match(r"\((.+-.+)\)\(.+\^2\+(.+)\+.+\^2\)", phrase)
-        try:
-            ok_style = check.group(1).replace("-", "") == check.group(2)
-        except AttributeError:
-            return False
-        if (not check is None and check.end() == len(phrase)) and ok_style:
+    check = re.match(r"\((.+-.+)\)\(.+\^2\+(.+)\+.+\^2\)", phrase)
+    if not check is None:
+        if check.group(1).replace('-', '') == check.group(2):
             return True
+    check = re.match(r"\(.+\^2\+(.+)\+.+\^2\)\((.+-.+)\)", phrase)
+    if not check is None:
+        if check.group(2).replace('-', '') == check.group(1):
+            return True
+    check = re.match(r"\(.+\^2-(.+)\+.+\^2\)\((.+\+.+)\)", phrase)
+    if not check is None:
+        if check.group(2).replace('+', '') == check.group(1):
+            return True
+    
     return False
 
 def is_common_sentence(phrase: str) -> bool:
