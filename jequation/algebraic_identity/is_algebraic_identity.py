@@ -147,10 +147,26 @@ def is_two_cube(phrase: str) -> bool:
     return False
 
 def is_fat_and_thin(phrase: str) -> bool:
-    #TODO: this (4+8)(16-24+64) is True Not Flase
+
+    check = re.match(r"\((\d+)(\+|-)(\d+)\)\((\d+)(-|\+)(\d+)\+(\d+)\)", phrase)
+    if not check is None:
+        if (int(check.group(1)) ** 2) == int(check.group(4)) and\
+            (int(check.group(3)) ** 2) == int(check.group(7)) and\
+                int(check.group(6)) == int(check.group(1)) * int(check.group(3)) and\
+                    check.group(2) != check.group(5):
+                    return True
+
+    check = re.match(r"\((\d+)(-|\+)(\d+)\+(\d+)\)\((\d+)(\+|-)(\d+)\)", phrase)
+    if not check is None:
+        if int(check.group(1)) == (int(check.group(5)) ** 2) and\
+            int(check.group(3)) == (int(check.group(5)) * int(check.group(7))) and\
+                int(check.group(4)) == (int(check.group(7)) ** 2) and\
+                    check.group(2) != check.group(6):
+                    return True
+
     check = re.match(r"\((.+\+.+)\)\(.+\^2-(.+)\+.+\^2\)", phrase)
     if not check is None:
-        if check.group(2).isalnum():
+        if check.group(2).isdecimal():
             nums_group =  check.group(1).split('+')
             nums_group = float(nums_group[0]) * float(nums_group[1])
             if float(check.group(2)) == nums_group:
@@ -159,7 +175,7 @@ def is_fat_and_thin(phrase: str) -> bool:
             return True
     check = re.match(r"\((.+-.+)\)\(.+\^2\+(.+)\+.+\^2\)", phrase)
     if not check is None:
-        if check.group(2).isalnum():
+        if check.group(2).isdecimal():
             nums_group =  check.group(1).split('-')
             nums_group = float(nums_group[0]) * float(nums_group[1])
             if float(check.group(2)) == nums_group:
@@ -168,7 +184,7 @@ def is_fat_and_thin(phrase: str) -> bool:
             return True
     check = re.match(r"\(.+\^2\+(.+)\+.+\^2\)\((.+-.+)\)", phrase)
     if not check is None:
-        if check.group(1).isalnum():
+        if check.group(1).isdecimal():
             nums_group =  check.group(2).split('-')
             nums_group = float(nums_group[0]) * float(nums_group[1])
             if float(check.group(1)) == nums_group:
@@ -177,7 +193,7 @@ def is_fat_and_thin(phrase: str) -> bool:
             return True
     check = re.match(r"\(.+\^2-(.+)\+.+\^2\)\((.+\+.+)\)", phrase)
     if not check is None:
-        if check.group(1).isalnum():
+        if check.group(1).isdecimal():
             nums_group =  check.group(2).split('+')
             nums_group = float(nums_group[0]) * float(nums_group[1])
             if float(check.group(1)) == nums_group:
