@@ -146,7 +146,22 @@ def is_two_cube(phrase: str) -> bool:
         return True
     return False
 
-#def is_fat_and_thin(phrase: str) ->bool:
+def is_fat_and_thin(phrase: str) ->bool:
+    check = re.match(r"\((.+\+.+)\)\(.+\^2-(.+)\+.+\^2\)", phrase)
+    try:
+        ok_style = check.group(1).replace("+", "") == check.group(2)
+        if (not check is None and check.end() == len(phrase)) and ok_style:
+            return True
+    except AttributeError:
+        check = re.match(r"\((.+-.+)\)\(.+\^2\+(.+)\+.+\^2\)", phrase)
+        try:
+            ok_style = check.group(1).replace("-", "") == check.group(2)
+        except AttributeError:
+            return False
+        if (not check is None and check.end() == len(phrase)) and ok_style:
+            return True
+    return False
+
 def is_common_sentence(phrase: str) -> bool:
     """This fucntion for checking your phrase is common sentence or not
         >>> import is_common_sentence
