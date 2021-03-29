@@ -148,7 +148,7 @@ def is_two_cube(phrase: str) -> bool:
 
 def is_fat_and_thin(phrase: str) -> bool:
 
-    # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True 
+    # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True
     check = re.match(r"\((\d+)(\+|-)(\d+)\)\((\d+)(-|\+)(\d+)\+(\d+)\)", phrase)
     if not check is None:
         if (int(check.group(1)) ** 2) == int(check.group(4)) and\
@@ -156,7 +156,7 @@ def is_fat_and_thin(phrase: str) -> bool:
         int(check.group(6)) == int(check.group(1)) * int(check.group(3)) and\
         check.group(2) != check.group(5):
             return True
-        
+
     # this (2-4)(4-8+16) or this (2+4)(4-8+16) is True
     check = re.match(r"\((\d+)(-|\+)(\d+)\+(\d+)\)\((\d+)(\+|-)(\d+)\)", phrase)
     if not check is None:
@@ -177,8 +177,8 @@ def is_fat_and_thin(phrase: str) -> bool:
         else:
             if (check.group(1)+check.group(3)) == check.group(5) and ok_style:
                 return True
-    
-    
+
+
     # this (a^2-ab+b^2)(a+b) or (a^2+ab+b^2)(a-b) is True
     check = re.match(r"\(.+\^2(\+|-)(.+)\+.+\^2\)\((.+)(-|\+)(.+)\)", phrase)
     if not check is None:
@@ -189,7 +189,7 @@ def is_fat_and_thin(phrase: str) -> bool:
                 return True
         elif ok_style and (check.group(3) + check.group(5)) == check.group(2):
             return True
-    
+
     return False
 
 def is_common_sentence(phrase: str) -> bool:
