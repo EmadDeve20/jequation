@@ -240,9 +240,21 @@ def is_common_sentence(phrase: str) -> bool:
     if not check is None and check.end() == len(phrase):
         return True
     check = re.match(r"\(.+-.+\)\^2", phrase)
-    if not check is None and check.end == len(phrase):
+    if not check is None and check.end() == len(phrase):
         return True
     return False
-#def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
+
+def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
+    check = re.match("\(.+(\+|-).+\)\^.+", phrase)
+    if not check is None and check.end() == len(phrase):
+        return True
+
+    # TODO: This (z-b)(z-b)(z-b)(z-c) is Not True so We have a Bug here
+    check = re.match("(\(.+(\+|-).+\)){1,}", phrase)
+    if not check is None and check.end() == len(phrase):
+        return True
+
+    return False
+
 #def is_lagrange_alliance(phrase: str) -> bool:
 #def is_euler_alliance(phrase: str) -> bool:
