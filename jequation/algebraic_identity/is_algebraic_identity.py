@@ -146,7 +146,17 @@ def is_two_cube(phrase: str) -> bool:
         return True
     return False
 
-def is_fat_and_thin(phrase: str) -> bool:
+def is_fat_thin(phrase: str) -> bool:
+    """
+    this is a function to check your phrase is fat and thin or not
+    >>> import is_fat_thin
+    >>> is_fat_thin("(2+4)(4-8+16)")
+    True
+    >>> is_fat_thin("(a+b)(a^2-ab+b^2)")
+    True
+    >>> is_fat_thin("(a-b)(a^2+ab-b^2)")
+    False
+    """
 
     # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True
     check = re.match(r"\((\d+)(\+|-)(\d+)\)\((\d+)(-|\+)(\d+)\+(\d+)\)", phrase)
