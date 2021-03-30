@@ -244,22 +244,34 @@ def is_common_sentence(phrase: str) -> bool:
         return True
     return False
 
+# TODO : This (ab+bc)(ba+cb) is True Not False!
 def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
-    check = re.match("\(.+(\+|-).+\)\^.+", phrase)
+    def ok_style(phrase: str):
+        ok_count = phrase.count(")")
+        if phrase.find("+") != -1 and phrase.rfind("+") != -1 and phrase.count("+") == ok_count:
+            number_one = phrase[phrase.find("(")+1:phrase.find("+")]
+            number_two = phrase[phrase.rfind("+")+1:len(phrase)-1]
+
+        ok_count = phrase.count(")") == phrase.count(number_one) == phrase.count(number_two)
+        if ok_count:
+            print("we are here :D")
+            return True
+        return False
+
+
+    check = re.match(r"\(.+(\+|-).+\)\^.+", phrase)
     if not check is None and check.end() == len(phrase):
         return True
 
-    # TODO: This (z-b)(z-b)(z-b)(z-c) is Not True so We have a Bug here
-    check = re.match("(\(.+(\+|-).+\)){1,}", phrase)
-    if not check is None and check.end() == len(phrase):
-        return True
+    check = re.match(r"(\(.+(\+|-).+\)){1,}", phrase)
+    if check.end() == len(phrase):
+        if ok_style(check.string):
+            return True
 
     return False
 
 def is_lagrange_alliance(phrase: str) -> bool:
-    check = re.match("\((.+)(\^.+)(\+|-)(.+)(\^.+)\)\((.+)(\^.+)(\+|-)(.+)(\^.+)\)", phrase)
+    check = re.match(r"\((.+)(\^.+)(\+|-)(.+)(\^.+)\)\((.+)(\^.+)(\+|-)(.+)(\^.+)\)", phrase)
     ok_style = (check.group(1) != check.group(4) and check.group(6) != check.group(4))
     return False
-    
-    
 #def is_euler_alliance(phrase: str) -> bool:
