@@ -244,9 +244,11 @@ def is_common_sentence(phrase: str) -> bool:
         return True
     return False
 
-# TODO : This (ab+bc)(ba+cb) is True Not False!
+
 def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
     def ok_style(phrase: str):
+        if phrase.count("+") != 0 and phrase.count("-") != 0:
+            return False
         ok_count = phrase.count(")")
         if phrase.find("+") != -1 and phrase.rfind("+") != -1 and phrase.count("+") == ok_count:
             number_one = phrase[phrase.find("(")+1:phrase.find("+")]
@@ -254,9 +256,18 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
 
         ok_count = phrase.count(")") == phrase.count(number_one) == phrase.count(number_two)
         if ok_count:
-            print("we are here :D")
             return True
-        return False
+        
+        true_phrase = True
+        for i in number_one:
+            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) or phrase.count(i) == ok_count
+            if good_style:
+                return False
+        for i in number_two:
+            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) or phrase.count(i) == ok_count
+            if good_style:
+                return False
+        return True
 
 
     check = re.match(r"\(.+(\+|-).+\)\^.+", phrase)
