@@ -256,5 +256,10 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
 
     return False
 
-#def is_lagrange_alliance(phrase: str) -> bool:
+def is_lagrange_alliance(phrase: str) -> bool:
+    check = re.match("\((.+)(\^.+)(\+|-)(.+)(\^.+)\)\((.+)(\^.+)(\+|-)(.+)(\^.+)\)", phrase)
+    ok_style = (check.group(1) != check.group(4) and check.group(6) != check.group(4))
+    return False
+    
+    
 #def is_euler_alliance(phrase: str) -> bool:
