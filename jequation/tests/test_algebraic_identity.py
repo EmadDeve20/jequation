@@ -81,10 +81,10 @@ def tests():
     def for_lagrange_alliance():
         assert is_lagrange_alliance("(a^2+b^2)(c^2+d^2)") is True
 
-#    for_two_square()
-#    for_two_cube()
-#    for_married()
-#    for_common_sentence()
-#    for_fat_thin()
-#    for_newtons()
+    for_two_square()
+    for_two_cube()
+    for_married()
+    for_common_sentence()
+    for_fat_thin()
+    for_newtons()
     for_lagrange_alliance()
