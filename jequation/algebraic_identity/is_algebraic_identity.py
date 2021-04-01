@@ -257,14 +257,14 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
         ok_count = phrase.count(")") == phrase.count(number_one) == phrase.count(number_two)
         if ok_count:
             return True
-        
-        true_phrase = True
         for i in number_one:
-            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) or phrase.count(i) == ok_count
+            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) \
+                    or phrase.count(i) == ok_count
             if good_style:
                 return False
         for i in number_two:
-            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) or phrase.count(i) == ok_count
+            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) \
+                    or phrase.count(i) == ok_count
             if good_style:
                 return False
         return True
@@ -282,7 +282,10 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
     return False
 
 def is_lagrange_alliance(phrase: str) -> bool:
-    check = re.match(r"\((.+)(\^.+)(\+|-)(.+)(\^.+)\)\((.+)(\^.+)(\+|-)(.+)(\^.+)\)", phrase)
-    ok_style = (check.group(1) != check.group(4) and check.group(6) != check.group(4))
+    check = re.match(r"\((.+)(\^.+)\+(.+)(\^.+)\)\((.+)(\^.+)\+(.+)(\^.+)\)", phrase)
+    ok_style = not check is None and\
+            (check.group(1) != check.group(3) and check.group(5) != check.group(8))
+    if ok_style:
+        return True
     return False
 #def is_euler_alliance(phrase: str) -> bool:
