@@ -37,8 +37,8 @@ def is_two_square(phrase: str) -> bool:
 
        #TODO: write local function for this work 
         for i in range(2,4):
-            if (not phrase[i].isdigit() and not "." in phrase[i])and\
-               (len(phrase[1]) == len(phrase[i]) and phrase[1][0] in phrase[i]):
+            if (len(phrase[1]) == len(phrase[i]) and phrase[i][0] in phrase[1]) and\
+                (not phrase[1].isdigit() and not "." in phrase[1]):
                 number_of_match = 0
                 for j in phrase[i]:
                     if j in phrase[1]:
@@ -46,8 +46,8 @@ def is_two_square(phrase: str) -> bool:
                 if number_of_match == len(phrase[1]):
                     phrase[i] = phrase[1]
         for i in range(2,4):
-            if (not phrase[i].isdigit() and not "." in phrase[i])and\
-               (len(phrase[0]) == len(phrase[i]) and phrase[0][0] in phrase[i]):
+            if (len(phrase[0]) == len(phrase[i]) and phrase[i][0] in phrase[0]) and\
+                (not phrase[0].isdigit() and not "." in phrase[0]):
                 number_of_match = 0
                 for j in phrase[i]:
                     if j in phrase[0]:
@@ -62,11 +62,12 @@ def is_two_square(phrase: str) -> bool:
 
     check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
     
-    if check and check.end() == len(phrase) and a_and_b(phrase):
-        return True
+    if check and check.group(1) == check.group(2):
+        if len(phrase) == check.end() and a_and_b(check.string):
+            return True
 
     check = re.match(r"\(.+(\+|-).+\)\^2", phrase)
-    if not check is None and check.end() == len(phrase):
+    if check and check.end() == len(phrase):
         return True
     return False
 
