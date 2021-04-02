@@ -30,28 +30,43 @@ def is_two_square(phrase: str) -> bool:
         if phrase.find("+") != -1:
             phrase = phrase.replace("+", " ")
         elif phrase.find("-") != -1:
-            phrase = phrase.replace("+", " ")
+            phrase = phrase.replace("-", " ")
         # phrase = "a b a b"
         phrase = phrase.split(" ")
         # phrase = "['a', 'b', 'a', 'b']"
 
+       #TODO: write local function for this work 
+        for i in range(2,4):
+            if (not phrase[i].isdigit() and not "." in phrase[i])and\
+               (len(phrase[1]) == len(phrase[i]) and phrase[1][0] in phrase[i]):
+                number_of_match = 0
+                for j in phrase[i]:
+                    if j in phrase[1]:
+                        number_of_match += 1
+                if number_of_match == len(phrase[1]):
+                    phrase[i] = phrase[1]
+        for i in range(2,4):
+            if (not phrase[i].isdigit() and not "." in phrase[i])and\
+               (len(phrase[0]) == len(phrase[i]) and phrase[0][0] in phrase[i]):
+                number_of_match = 0
+                for j in phrase[i]:
+                    if j in phrase[0]:
+                        number_of_match += 1
+                if number_of_match == len(phrase[0]):
+                    phrase[i] = phrase[0]
+        # end of work
         ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
         if phrase[0] != phrase[1] and ok_style:
             return True
         return False
 
-    check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
-    if not check is None and check.end() == len(phrase) and a_and_b(phrase):
-        return True
-    check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
-    if not check is None and check.end() == len(phrase) and a_and_b(phrase):
+    check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
+    
+    if check and check.end() == len(phrase) and a_and_b(phrase):
         return True
 
-    check = re.match(r"\(.+\+.+\)\^2", phrase)
+    check = re.match(r"\(.+(\+|-).+\)\^2", phrase)
     if not check is None and check.end() == len(phrase):
-        return True
-    check = re.match(r"\(.+-.+\)\^2", phrase)
-    if not check is None and check.end == len(phrase):
         return True
     return False
 
