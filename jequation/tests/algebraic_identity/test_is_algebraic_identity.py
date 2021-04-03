@@ -64,7 +64,7 @@ def tests():
     def for_common_sentence():
         assert is_common_sentence("(10-2)(2-11)") is True
         assert is_common_sentence("(xvc+a)(b+xcv)") is True
-        assert is_common_sentence("(10+11)(11+10)") is False
+        assert is_common_sentence("(10+11)(11+10)") is True
     def for_fat_thin():
         assert is_fat_thin("(2+4)(4-8+16)") is True
         assert is_fat_thin("(a-b)(a^2+ab-b^2)") is False
