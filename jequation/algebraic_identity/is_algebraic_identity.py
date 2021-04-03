@@ -135,15 +135,25 @@ def is_two_cube(phrase: str) -> bool:
         phrase = phrase.split(" ")
         # phrase = "['a', 'b', 'a', 'b', 'a', 'b']"
 
-        ok_style = phrase.count(phrase[0]) == 3 and phrase.count(phrase[1]) == 3
-        if phrase[0] != phrase[1] and ok_style:
+        for j in range(2):
+            for i in range(2,6):
+                if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
+                   (not phrase[j].isdigit() and not "." in phrase[j]):
+                    number_of_match = 0
+                    for p in phrase[i]:
+                        if p in phrase[j]:
+                            number_of_match += 1
+                    if number_of_match == len(phrase[j]):
+                        phrase[i] = phrase[j]
+
+        ok_style = (phrase.count(phrase[0]) == 3 and phrase.count(phrase[1]) == 3) or\
+            phrase.count(phrase[0]) == 6
+        if ok_style:
             return True
         return False
-    check = re.match(r"\(.+\+.+\)\(.+\+.+\)\(.+\+.+\)", phrase)
-    if (not check is None and check.end() == len(phrase)) and a_and_b(phrase):
-        return True
-    check = re.match(r"\(.+-.+\)\(.+-.+\)\(.+-.+\)", phrase)
-    if (not check is None and check.end() == len(phrase)) and a_and_b(phrase):
+
+    check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
+    if (check and check.group(1) == check.group(2) == check.group(3)) and a_and_b(check.string):
         return True
     check = re.match(r"\(.+\+.+\)\^3", phrase)
     if (not check is None) and check.end() == len(phrase):
