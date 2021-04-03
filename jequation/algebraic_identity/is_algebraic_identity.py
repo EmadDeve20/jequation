@@ -236,20 +236,35 @@ def is_common_sentence(phrase: str) -> bool:
     # this Function for checking you phrase has one subscriber or no
     def one_subscribe(phrase: str):
         # phrase = "(x+a)(x+b)"
+        phrase = phrase.replace("(", "", 1)
+        # phrase = "x+a)(x+b)"
+        phrase = phrase.replace(")", " ", 1)
+        # phrase = "x+a (x+b)"
         phrase = phrase.replace("(", "")
-        # phrase = "x+a)x+b)"
+        # phrase = "x+a x+b)"
         phrase = phrase.replace(")", "")
-        # phrase = "x+ax+b"
-        counter = 0
-        last_char = ""
-        for i in phrase:
-            if i in ("+", "-"):
-                continue
-            if phrase.count(i) == 2 and not i in last_char:
-                counter += 1
-                last_char += i
 
-        if counter == 1:
+        # phrase = "x+a x+b"
+        if phrase.find("+") != -1:
+            phrase = phrase.replace("+", " ")
+        elif phrase.find("-") != -1:
+            phrase = phrase.replace("-", " ")
+        # phrase = "a b a b"
+        phrase = phrase.split(" ")
+        # phrase = "['a', 'b', 'a', 'b']"
+
+        for j in range(2):
+            for i in range(2,4):
+                if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
+                   (not phrase[j].isdigit() and not "." in phrase[j]):
+                    number_of_match = 0
+                    for p in phrase[i]:
+                        if p in phrase[j]:
+                            number_of_match += 1
+                    if number_of_match == len(phrase[j]):
+                        phrase[i] = phrase[j]
+        ok_style = phrase.count(phrase[0]) == 2 or phrase.count(phrase[1]) == 2 
+        if ok_style:
             return True
         return False
 
