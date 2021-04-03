@@ -53,9 +53,8 @@ def is_two_square(phrase: str) -> bool:
 
     check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
     
-    if check and check.group(1) == check.group(2):
-        if len(phrase) == check.end() and a_and_b(check.string):
-            return True
+    if (check and check.group(1) == check.group(2)) and a_and_b(check.string):
+        return True
 
     check = re.match(r"\(.+(\+|-).+\)\^2", phrase)
     if check and check.end() == len(phrase):
