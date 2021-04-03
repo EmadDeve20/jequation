@@ -35,24 +35,16 @@ def is_two_square(phrase: str) -> bool:
         phrase = phrase.split(" ")
         # phrase = "['a', 'b', 'a', 'b']"
 
-        for i in range(2,4):
-            if (len(phrase[1]) == len(phrase[i]) and phrase[i][0] in phrase[1]) and\
-                (not phrase[1].isdigit() and not "." in phrase[1]):
-                number_of_match = 0
-                for j in phrase[i]:
-                    if j in phrase[1]:
-                        number_of_match += 1
-                if number_of_match == len(phrase[1]):
-                    phrase[i] = phrase[1]
-        for i in range(2,4):
-            if (len(phrase[0]) == len(phrase[i]) and phrase[i][0] in phrase[0]) and\
-                (not phrase[0].isdigit() and not "." in phrase[0]):
-                number_of_match = 0
-                for j in phrase[i]:
-                    if j in phrase[0]:
-                        number_of_match += 1
-                if number_of_match == len(phrase[0]):
-                    phrase[i] = phrase[0]
+        for j in range(2):
+            for i in range(2,4):
+                if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
+                   (not phrase[j].isdigit() and not "." in phrase[j]):
+                    number_of_match = 0
+                    for p in phrase[i]:
+                        if p in phrase[j]:
+                            number_of_match += 1
+                    if number_of_match == len(phrase[j]):
+                        phrase[i] = phrase[j]
         ok_style = (phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2) or\
             phrase.count(phrase[0]) == 4
         if ok_style:
