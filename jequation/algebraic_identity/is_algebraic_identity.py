@@ -53,8 +53,9 @@ def is_two_square(phrase: str) -> bool:
                         number_of_match += 1
                 if number_of_match == len(phrase[0]):
                     phrase[i] = phrase[0]
-        ok_style = phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2
-        if phrase[0] != phrase[1] and ok_style:
+        ok_style = (phrase.count(phrase[0]) == 2 and phrase.count(phrase[1]) == 2) or\
+            phrase.count(phrase[0]) == 4
+        if ok_style:
             return True
         return False
 
