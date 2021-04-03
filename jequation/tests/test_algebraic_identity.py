@@ -42,6 +42,7 @@ def is_lagrange_alliance(phrase: str) -> bool:
 
 def tests():
     def for_two_square():
+        assert is_two_square("(20+20)(20+20)") is True
         assert is_two_square("(20+10)(10-20)") is False
         assert is_two_square("(20+10)^3)") is False
         assert is_two_square("(20-10)(20-100)") is False
@@ -49,6 +50,7 @@ def tests():
         assert is_two_square("(AXB-ACV)(VCA-ABX)") is True
         assert is_two_square("(20+10)^2") is True
     def for_two_cube():
+        assert is_two_square("(20+20)(20+20)(20+20)") is True
         assert is_two_cube("(1+2)(2+1)(1+2)") is True
         assert is_two_cube("(1+2)^3") is True
         assert is_two_cube("(dsa+x)(x+sda)(x+asd)") is True
