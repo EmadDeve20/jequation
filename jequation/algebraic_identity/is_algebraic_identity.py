@@ -268,18 +268,8 @@ def is_common_sentence(phrase: str) -> bool:
             return True
         return False
 
-    check = re.match(r"\(.+\+.+\)\(.+\+.+\)", phrase)
-    if not check is None and check.end() == len(phrase) and one_subscribe(phrase):
-        return True
-    check = re.match(r"\(.+-.+\)\(.+-.+\)", phrase)
-    if not check is None and check.end() == len(phrase) and one_subscribe(phrase):
-        return True
-
-    check = re.match(r"\(.+\+.+\)\^2", phrase)
-    if not check is None and check.end() == len(phrase):
-        return True
-    check = re.match(r"\(.+-.+\)\^2", phrase)
-    if not check is None and check.end() == len(phrase):
+    check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
+    if (check and check.group(1) == check.group(2)) and one_subscribe(check.string):
         return True
     return False
 
