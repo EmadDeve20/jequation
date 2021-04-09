@@ -276,34 +276,35 @@ def is_common_sentence(phrase: str) -> bool:
 
 def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
     def ok_style(phrase: str):
-        if phrase.count("+") != 0 and phrase.count("-") != 0:
+        if phrase.count("+") != 0 and phrase.count("-") != 0 \
+            or (phrase.count("(") != phrase.count("-") and phrase.count("(") != phrase.count("+")):
             return False
-        ok_count = phrase.count(")")
-        if phrase.find("+") != -1 and phrase.rfind("+") != -1 and phrase.count("+") == ok_count:
-            number_one = phrase[phrase.find("(")+1:phrase.find("+")]
-            number_two = phrase[phrase.rfind("+")+1:len(phrase)-1]
-
-        ok_count = phrase.count(")") == phrase.count(number_one) == phrase.count(number_two)
-        if ok_count:
+        phrase = phrase.replace("(", "")
+        phrase = phrase.replace(")", " ", phrase.count(")")-1)
+        phrase = phrase.replace(")", "")
+        phrase = phrase.replace("+", " ")
+        phrase = phrase.split(" ")
+        for j in range(2):
+            for i in range(2,len(phrase)):
+                if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
+                   (not phrase[j].isdigit() and not "." in phrase[j]):
+                    number_of_match = 0
+                    for p in phrase[i]:
+                        if p in phrase[j]:
+                            number_of_match += 1
+                    if number_of_match == len(phrase[j]):
+                        phrase[i] = phrase[j]
+        ok_style = phrase.count(phrase[0]) == len(phrase)/2 and phrase.count(phrase[1]) == len(phrase)/2 
+        if ok_style:
             return True
-        for i in number_one:
-            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) \
-                    or phrase.count(i) == ok_count
-            if good_style:
-                return False
-        for i in number_two:
-            good_style = phrase.count(i) == ok_count/2 * phrase.count(i) \
-                    or phrase.count(i) == ok_count
-            if good_style:
-                return False
-        return True
-
+        return False
 
     check = re.match(r"\(.+(\+|-).+\)\^.+", phrase)
     if not check is None and check.end() == len(phrase):
         return True
 
-    check = re.match(r"(\(.+(\+|-).+\)){1,}", phrase)
+    check = re.match(r"\(.+(\+|-).+\)", phrase)
+    print(check.string)
     if check.end() == len(phrase):
         if ok_style(check.string):
             return True
