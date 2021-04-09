@@ -76,7 +76,7 @@ def tests():
         assert is_newtons_binomial_expansion_sentence("(a-b)^10") is True
         assert is_newtons_binomial_expansion_sentence("(a+b)(a-b)(a+b)") is False
         assert is_newtons_binomial_expansion_sentence("(a+b)^") is False
-        assert is_newtons_binomial_expansion_sentence("(a+b)") is False
+        assert is_newtons_binomial_expansion_sentence("(a+b)") is True
         assert is_newtons_binomial_expansion_sentence("(ab+cx)(xc+ba)(ab+cx)(ba+xc)") is True
     def for_lagrange_alliance():
         assert is_lagrange_alliance("(a^2+b^2)(c^2+d^2)") is True
