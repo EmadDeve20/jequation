@@ -304,7 +304,6 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
         return True
 
     check = re.match(r"\(.+(\+|-).+\)", phrase)
-    print(check.string)
     if check.end() == len(phrase):
         if ok_style(check.string):
             return True
