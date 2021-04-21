@@ -180,21 +180,58 @@ def is_fat_thin(phrase: str) -> bool:
     True
     >>> is_fat_thin("(a-b)(a^2+ab-b^2)")
     False
-    """
-
-    # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True
+    """ 
+    def ok_style(phrase: re.Match) -> bool:
+        if phrase.group(2) == phrase.group(5):
+            print(186)
+            return False
+        try:
+            number_one = float(phrase.group(1))
+            number_two = float(phrase.group(3))
+            number_three = float(phrase.group(6))
+            if number_one * number_two != number_three:
+                print(192)
+                return False
+        except:
+            number_one = phrase.group(1)
+            number_two = phrase.group(3)
+            number_three = phrase.group(6)
+            for i in number_one:
+                for j in number_two:
+                    if not i in number_three or not j in number_three:
+                        print(200)
+                        return False
+        try:
+            number_one = float(phrase.group(1))
+            number_two = float(phrase.group(4))
+            if number_two != number_one ** 2:
+                print(205)
+                return False
+        except:
+            number_one = phrase.group(1)
+            number_two = phrase.group(4)
+            for i in number_two[:number_two.find("^2")]:
+                if not i in number_one:
+                    print(211)
+                    return False 
+        try:
+            number_one = float(phrase.group(3))
+            number_two = float(phrase.group(7))
+            if number_two != number_one ** 2:
+                print(216)
+                return False
+        except:
+            number_one = phrase.group(3)
+            number_two = phrase.group(7)
+            for i in number_two[:number_two.find("^2")]:
+                if not i in number_one:
+                    print(222)
+                    return False 
+        return True
+    # this (2+4)(4-8+16) or this (2-4)(2^2-8+4^2) is True
     check = re.match(r"\((.+)(\+|-)(.+)\)\((.+)(-|\+)(.+)\+(.+)\)", phrase)
-    if check:
-        print(check.string)
+    if check and ok_style(check):
         return True
-
-    # this (2-4)(4-8+16) or this (2+4)(4-8+16) is True
-    check = re.match(r"\((.+)(-|\+)(.+)\+(.+)\)\((.+)(\+|-)(.+)\)", phrase)
-    if check:
-        print(check.string)
-        return True
-
-    print("Hi")
     return False
 
 def is_common_sentence(phrase: str) -> bool:
