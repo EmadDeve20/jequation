@@ -183,47 +183,18 @@ def is_fat_thin(phrase: str) -> bool:
     """
 
     # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True
-    check = re.match(r"\((\d+)(\+|-)(\d+)\)\((\d+)(-|\+)(\d+)\+(\d+)\)", phrase)
-    if not check is None:
-        if (int(check.group(1)) ** 2) == int(check.group(4)) and\
-        (int(check.group(3)) ** 2) == int(check.group(7)) and\
-        int(check.group(6)) == int(check.group(1)) * int(check.group(3)) and\
-        check.group(2) != check.group(5):
-            return True
+    check = re.match(r"\((.+)(\+|-)(.+)\)\((.+)(-|\+)(.+)\+(.+)\)", phrase)
+    if check:
+        print(check.string)
+        return True
 
     # this (2-4)(4-8+16) or this (2+4)(4-8+16) is True
-    check = re.match(r"\((\d+)(-|\+)(\d+)\+(\d+)\)\((\d+)(\+|-)(\d+)\)", phrase)
-    if not check is None:
-        if int(check.group(1)) == (int(check.group(5)) ** 2) and\
-        int(check.group(3)) == (int(check.group(5)) * int(check.group(7))) and\
-        int(check.group(4)) == (int(check.group(7)) ** 2) and\
-        check.group(2) != check.group(6):
-            return True
+    check = re.match(r"\((.+)(-|\+)(.+)\+(.+)\)\((.+)(\+|-)(.+)\)", phrase)
+    if check:
+        print(check.string)
+        return True
 
-    # this (a+b)(a^2-ab+b^2) or (a-b)(a^2+ab+b^2) is True
-    check = re.match(r"\((.+)(\+|-)(.+)\)\(.+\^2(-|\+)(.+)\+.+\^2\)", phrase)
-    if not check is None:
-        ok_style = check.group(2) != check.group(4)
-        if check.group(5).isdecimal():
-            nums_group = float(check.group(1)) * float(check.group(3))
-            if float(check.group(2)) == nums_group and ok_style:
-                return True
-        else:
-            if (check.group(1)+check.group(3)) == check.group(5) and ok_style:
-                return True
-
-
-    # this (a^2-ab+b^2)(a+b) or (a^2+ab+b^2)(a-b) is True
-    check = re.match(r"\(.+\^2(\+|-)(.+)\+.+\^2\)\((.+)(-|\+)(.+)\)", phrase)
-    if not check is None:
-        ok_style = check.group(1) != check.group(4)
-        if check.group(2).isdecimal():
-            nums_group = float(check.group(3)) * float(check.group(5))
-            if float(check.group(2)) == nums_group and ok_style:
-                return True
-        elif ok_style and (check.group(3) + check.group(5)) == check.group(2):
-            return True
-
+    print("Hi")
     return False
 
 def is_common_sentence(phrase: str) -> bool:
