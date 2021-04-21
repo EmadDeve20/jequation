@@ -180,21 +180,92 @@ def is_fat_thin(phrase: str) -> bool:
     True
     >>> is_fat_thin("(a-b)(a^2+ab-b^2)")
     False
-    """
+    """ 
+    def ok_style(phrase: str) -> bool:
+        phrase = phrase.replace("(", "")
+        phrase = phrase.replace("+", " ")
+        phrase = phrase.replace("-", " ")
+        phrase = phrase.replace(")", " ", 1)
+        phrase = phrase.replace(")", "")
+        phrase = phrase.split(" ")
+        score = 0
+        for j in range(2):
+            for i in range(2, 5):
+                if (len(phrase[j]) == len(phrase[i][:phrase[i].find("^2")]) and \
+                    phrase[i][0] in phrase[j]) and\
+                   (not phrase[j].isdigit() and not "." in phrase[j]):
+                    number_of_match = 0
+                    for p in phrase[i][:phrase[i].find("^2")]:
+                        print(phrase[i][:phrase[i].find("^2")])
+                        if p in phrase[j]:
+                            number_of_match += 1
+                    if number_of_match == len(phrase[j]):
+                        phrase[j] = phrase[i][:phrase[i].find("^2")]
+                        score += 1
 
-    # this (2+4)(4-8+16) or this (2-4)(4-8+16) is True
+        try:
+            static_naumber = float(phrase[0])
+            dynamic_number = 0
+            for i in range(2, 5):
+                dynamic_number = float(phrase[i])
+                if static_naumber ** 2 == dynamic_number:
+                    score += 1
+                    print(f"{score}: 211")
+                    break
+        except ValueError:
+            static_naumber = phrase[0]
+            dynamic_number = ""
+            for i in range(2, 5):
+                dynamic_number = phrase[i]
+                if static_naumber == dynamic_number[dynamic_number.find("^2")]:
+                    score += 1
+                    print(f"{score}: 220")
+                    break
+
+        try:
+            static_naumber = float(phrase[1])
+            dynamic_number = 0
+            for i in range(2, 5):
+                dynamic_number = float(phrase[i])
+                if static_naumber ** 2 == dynamic_number:
+                    score += 1
+                    print(f"{score}: 230")
+                    break
+        except ValueError:
+            static_naumber = phrase[1]
+            dynamic_number = ""
+            for i in range(2, 5):
+                dynamic_number = phrase[i]
+                if static_naumber == dynamic_number[dynamic_number.find("^2")]:
+                    score += 1
+                    print(f"{score}: 239")
+                    break
+
+        try:
+            match_number = float(phrase[0]) * float(phrase[1])
+            for i in range(2, 5):
+                if float(phrase[i]) == match_number:
+                    score += 1
+                    print(f"{score}: 248")
+                    break
+        except ValueError:
+            match_number = phrase[0] + phrase[1]
+            for i in range(2, 5):
+                if len(phrase[i]) == len(match_number):
+                    score += 1
+                    print(f"{score}: 254")
+                    break
+                
+        print(score)
+        print(phrase)
+        if score >= 3:
+            return True
+        return False
+        
+    # this (2+4)(4-8+16) or this (2-4)(2^2-8+4^2) is True
     check = re.match(r"\((.+)(\+|-)(.+)\)\((.+)(-|\+)(.+)\+(.+)\)", phrase)
-    if check:
-        print(check.string)
+    if check and check.group(2) != check.group(5) and ok_style(check.string):
         return True
-
-    # this (2-4)(4-8+16) or this (2+4)(4-8+16) is True
-    check = re.match(r"\((.+)(-|\+)(.+)\+(.+)\)\((.+)(\+|-)(.+)\)", phrase)
-    if check:
-        print(check.string)
-        return True
-
-    print("Hi")
     return False
 
 def is_common_sentence(phrase: str) -> bool:
