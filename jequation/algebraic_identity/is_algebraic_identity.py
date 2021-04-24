@@ -196,7 +196,6 @@ def is_fat_thin(phrase: str) -> bool:
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
                     for p in phrase[i][:phrase[i].find("^2")]:
-                        print(phrase[i][:phrase[i].find("^2")])
                         if p in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
@@ -209,17 +208,19 @@ def is_fat_thin(phrase: str) -> bool:
             for i in range(2, 5):
                 dynamic_number = float(phrase[i])
                 if static_naumber ** 2 == dynamic_number:
+                    print("212")
                     score += 1
-                    print(f"{score}: 211")
                     break
         except ValueError:
             static_naumber = phrase[0]
             dynamic_number = ""
             for i in range(2, 5):
                 dynamic_number = phrase[i]
-                if static_naumber == dynamic_number[dynamic_number.find("^2")]:
+                if dynamic_number.find("^2"):
+                    dynamic_number = dynamic_number[:dynamic_number.find("^2")]
+                if static_naumber == dynamic_number:
+                    print("222")
                     score += 1
-                    print(f"{score}: 220")
                     break
 
         try:
@@ -228,36 +229,40 @@ def is_fat_thin(phrase: str) -> bool:
             for i in range(2, 5):
                 dynamic_number = float(phrase[i])
                 if static_naumber ** 2 == dynamic_number:
+                    print("231")
                     score += 1
-                    print(f"{score}: 230")
                     break
         except ValueError:
             static_naumber = phrase[1]
             dynamic_number = ""
             for i in range(2, 5):
                 dynamic_number = phrase[i]
-                if static_naumber == dynamic_number[dynamic_number.find("^2")]:
+                if dynamic_number.find("^2"):
+                    dynamic_number = dynamic_number[:dynamic_number.find("^2")]
+                if static_naumber == dynamic_number:
+                    print("241")
                     score += 1
-                    print(f"{score}: 239")
                     break
 
         try:
             match_number = float(phrase[0]) * float(phrase[1])
             for i in range(2, 5):
-                if float(phrase[i]) == match_number:
-                    score += 1
-                    print(f"{score}: 248")
-                    break
+                try:
+                    if float(phrase[i]) == match_number:
+                        print("248")
+                        score += 1
+                        break
+                except ValueError:
+                    pass
+                   
         except ValueError:
             match_number = phrase[0] + phrase[1]
             for i in range(2, 5):
                 if len(phrase[i]) == len(match_number):
+                    print("254")
                     score += 1
-                    print(f"{score}: 254")
                     break
                 
-        print(score)
-        print(phrase)
         if score >= 3:
             return True
         return False
