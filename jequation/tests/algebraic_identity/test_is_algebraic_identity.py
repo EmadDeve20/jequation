@@ -69,7 +69,6 @@ def tests():
         assert is_fat_thin("(2+4)(4-8+16)") is True
         assert is_fat_thin("(a-b)(a^2+ab-b^2)") is False
         assert is_fat_thin("(a-b)(a^2+ab+b^2)") is True
-        assert is_fat_thin("(2+1)(2^2-2+1)") is True
         assert is_fat_thin("(acv+x)(vca^2-xcav+x^2)") is True
     def for_newtons():
         assert is_newtons_binomial_expansion_sentence("(a+b)(b+a)(a+b)") is True
