@@ -3,6 +3,8 @@
 """
 I used the Persian names of alliances for all functions
 """
+#TODO: Ability to receive expressions with the power symbol 2 or the power number 2 in a phrase
+# For all Functions
 
 import re
 
@@ -364,4 +366,6 @@ def is_lagrange_alliance(phrase: str) -> bool:
     if ok_style:
         return True
     return False
+
 #def is_euler_alliance(phrase: str) -> bool:
+#(a+b+c)(a^2+b^2+c^2-ab-ac-bc) = a^3+b^3+c^3-3abc
