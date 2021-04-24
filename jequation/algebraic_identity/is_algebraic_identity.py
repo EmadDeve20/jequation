@@ -180,7 +180,7 @@ def is_fat_thin(phrase: str) -> bool:
     True
     >>> is_fat_thin("(a-b)(a^2+ab-b^2)")
     False
-    """ 
+    """
     def ok_style(phrase: str) -> bool:
         phrase = phrase.replace("(", "")
         phrase = phrase.replace("+", " ")
