@@ -3,6 +3,7 @@
 """
 This is a Demo module for solving Diophantine equations
 """
+import math
 
 def linear_with_one_unknown\
     (number_a: int, number_b: int, number_c: int = 0, target: str = "") -> int:
@@ -43,14 +44,27 @@ def linear_with_tow_unknown\
     result = (number_of_x_one - number_of_x_two) / (number_one - number_two)
     return result
 
-def taxicab_number():
+def taxicab_number(num: int) -> float:
     """The smallest nontrivial solution in positive integers is 123 + 13 = 93 + 103 = 1729.
     It was famously given as an evident property of 1729, a taxicab number (also named Hardy–Ramanujan number) by Ramanujan to Hardy while
     meeting in 1917.[1] 
     There are infinitely many nontrivial solutions.
     https://en.wikipedia.org/wiki/Taxicab_number
     """
-    pass
+    #TODO: this code need good comments
+    count, iter = 0, 1
+    while count < num:
+        iter += 1
+        int_count = 0
+        for x in range(1, math.ceil(pow(iter, 1.0 / 3)) + 1):
+            for y in range(x+1, math.ceil(pow(iter, 1.0 / 3)) + 1):
+                if x**3 + y**3 == iter:
+                    int_count += 1
+        if int_count == 2:
+            count += 1
+        
+
+    return iter
 
 def pythagorean_triple():
     """
