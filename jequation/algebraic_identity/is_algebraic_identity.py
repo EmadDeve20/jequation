@@ -38,12 +38,12 @@ def is_two_square(phrase: str) -> bool:
         # phrase = "['a', 'b', 'a', 'b']"
 
         for j in range(2):
-            for i in range(2,4):
+            for i in range(2, 4):
                 if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[i] = phrase[j]
@@ -54,7 +54,7 @@ def is_two_square(phrase: str) -> bool:
         return False
 
     check = re.match(r"\(.+(\+|-).+\)\(.+(\+|-).+\)", phrase)
-    
+
     if (check and check.group(1) == check.group(2)) and a_and_b(check.string):
         return True
 
@@ -93,12 +93,12 @@ def is_married(phrase: str) -> bool:
         # phrase = "['a', 'b', 'a', 'b']"
 
         for j in range(2):
-            for i in range(2,4):
+            for i in range(2, 4):
                 if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[i] = phrase[j]
@@ -145,12 +145,12 @@ def is_two_cube(phrase: str) -> bool:
         # phrase = "['a', 'b', 'a', 'b', 'a', 'b']"
 
         for j in range(2):
-            for i in range(2,6):
+            for i in range(2, 6):
                 if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[i] = phrase[j]
@@ -197,8 +197,8 @@ def is_fat_thin(phrase: str) -> bool:
                     phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i][:phrase[i].find("^2")]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i][:phrase[i].find("^2")]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[j] = phrase[i][:phrase[i].find("^2")]
@@ -256,7 +256,7 @@ def is_fat_thin(phrase: str) -> bool:
                         break
                 except ValueError:
                     pass
-                   
+
         except ValueError:
             match_number = phrase[0] + phrase[1]
             for i in range(2, 5):
@@ -264,11 +264,11 @@ def is_fat_thin(phrase: str) -> bool:
                     print("254")
                     score += 1
                     break
-                
+
         if score >= 3:
             return True
         return False
-        
+
     # this (2+4)(4-8+16) or this (2-4)(2^2-8+4^2) is True
     check = re.match(r"\((.+)(\+|-)(.+)\)\((.+)(-|\+)(.+)\+(.+)\)", phrase)
     if check and check.group(2) != check.group(5) and ok_style(check.string):
@@ -303,16 +303,16 @@ def is_common_sentence(phrase: str) -> bool:
         # phrase = "['a', 'b', 'a', 'b']"
 
         for j in range(2):
-            for i in range(2,4):
+            for i in range(2, 4):
                 if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[i] = phrase[j]
-        ok_style = phrase.count(phrase[0]) == 2 or phrase.count(phrase[1]) == 2 
+        ok_style = phrase.count(phrase[0]) == 2 or phrase.count(phrase[1]) == 2
         if ok_style:
             return True
         return False
@@ -334,16 +334,17 @@ def is_newtons_binomial_expansion_sentence(phrase: str) -> bool:
         phrase = phrase.replace("+", " ")
         phrase = phrase.split(" ")
         for j in range(2):
-            for i in range(2,len(phrase)):
+            for i in range(2, len(phrase)):
                 if (len(phrase[j]) == len(phrase[i]) and phrase[i][0] in phrase[j]) and\
                    (not phrase[j].isdigit() and not "." in phrase[j]):
                     number_of_match = 0
-                    for p in phrase[i]:
-                        if p in phrase[j]:
+                    for alpha in phrase[i]:
+                        if alpha in phrase[j]:
                             number_of_match += 1
                     if number_of_match == len(phrase[j]):
                         phrase[i] = phrase[j]
-        ok_style = phrase.count(phrase[0]) == len(phrase)/2 and phrase.count(phrase[1]) == len(phrase)/2 
+        ok_style = phrase.count(phrase[0]) == \
+            len(phrase)/2 and phrase.count(phrase[1]) == len(phrase)/2
         if ok_style:
             return True
         return False
