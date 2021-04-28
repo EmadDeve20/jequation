@@ -46,30 +46,32 @@ def linear_with_tow_unknown\
 
 def taxicab_number(num: int) -> float:
     """The smallest nontrivial solution in positive integers is 123 + 13 = 93 + 103 = 1729.
-    It was famously given as an evident property of 1729, a taxicab number (also named Hardy–Ramanujan number) by Ramanujan to Hardy while
-    meeting in 1917.[1] 
+    It was famously given as an evident property of 1729,
+    a taxicab number (also named Hardy–Ramanujan number) by Ramanujan to Hardy while
+    meeting in 1917.[1]
     There are infinitely many nontrivial solutions.
     https://en.wikipedia.org/wiki/Taxicab_number
     """
     #TODO: this code need good comments
-    count, iter = 0, 1
+    count, iter_num = 0, 1
     while count < num:
-        iter += 1
+        iter_num += 1
         int_count = 0
-        for x in range(1, math.ceil(pow(iter, 1.0 / 3)) + 1):
-            for y in range(x+1, math.ceil(pow(iter, 1.0 / 3)) + 1):
-                if x**3 + y**3 == iter:
+        for num_one in range(1, math.ceil(pow(iter_num, 1.0 / 3)) + 1):
+            for num_two in range(num_one+1, math.ceil(pow(iter_num, 1.0 / 3)) + 1):
+                if num_one**3 + num_two**3 == iter_num:
                     int_count += 1
         if int_count == 2:
             count += 1
         
 
-    return iter
+    return iter_num
 
 def pythagorean_triple():
     """
     For n = 2 there are infinitely many solutions (x, y, z): the Pythagorean triples.
-    For larger integer values of n, Fermat's Last Theorem (initially claimed in 1637 by Fermat and proved by Andrew Wiles in 1995[3])
+    For larger integer values of n, Fermat's Last Theorem
+    (initially claimed in 1637 by Fermat and proved by Andrew Wiles in 1995[3])
     states there are no positive integer solutions (x, y, z).
     https://en.wikipedia.org/wiki/Pythagorean_triple
     """
