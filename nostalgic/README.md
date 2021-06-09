@@ -1,6 +1,6 @@
-#jequation
+# jequation
 
-##this is a project that can solve the equation
+## this is a project that can solve the equation
 
 ![screenshot](first.png)
 ![screenshot](second.png)
